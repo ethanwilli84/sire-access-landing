@@ -4,27 +4,27 @@
   <meta charset="UTF-8">
   <title>Sire Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Exclusive, invite-only access to Sire – the platform that turns hustlers into industry leaders.">
+  <meta name="description" content="Exclusive, invite-only access to Sire — the platform that turns hustlers into industry leaders.">
   <style>
     body {
       margin: 0;
       height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at 20% 20%, #5aa7df, #0a2949 100%);
+      justify-content: center;
+      background: radial-gradient(circle at 20% 10%, #5fa7e0 0%, #0b2947 100%);
       font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif;
       color: #fff;
     }
 
     .card {
       background: #111;
-      border-radius: 16px;
-      padding: 30px;
-      width: 350px;
+      border-radius: 20px;
+      padding: 40px;
       text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
-      animation: fadeIn 1s ease-out;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
+      max-width: 420px;
+      width: 90%;
     }
 
     .logo {
@@ -33,90 +33,92 @@
     }
 
     .tagline {
-      font-size: 16px;
-      margin-bottom: 25px;
-      line-height: 1.5em;
-      opacity: 0;
-      animation: fadeUp 1.2s ease forwards;
+      font-size: 18px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .waitlist-btn {
       background: #fff;
       color: #000;
       border: none;
-      padding: 14px 30px;
-      font-size: 16px;
+      padding: 16px 20px;
       border-radius: 50px;
-      cursor: pointer;
+      font-size: 18px;
       font-weight: bold;
-      transition: background 0.3s ease;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       width: 100%;
     }
+
     .waitlist-btn:hover {
-      background: #ddd;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    .phone-form {
+    /* Phone input popup (hidden by default) */
+    #phoneForm {
       display: none;
-      margin-top: 15px;
-      animation: fadeUp 0.6s ease forwards;
+      margin-top: 20px;
+      animation: fadeIn 0.6s ease-in-out;
     }
-    .phone-input {
-      width: 100%;
+
+    #phoneForm input {
       padding: 12px;
-      border-radius: 6px;
+      width: 80%;
+      border-radius: 8px;
       border: none;
-      font-size: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
-    .request-btn {
-      background: #5aa7df;
-      color: #fff;
+
+    #phoneForm button {
+      background: #5fa7e0;
+      color: white;
+      padding: 12px 18px;
       border: none;
-      padding: 12px;
-      font-size: 15px;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      width: 100%;
-    }
-    .request-btn:hover {
-      background: #3f8ec5;
+      font-size: 16px;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.95);}
-      to {opacity: 1; transform: scale(1);}
-    }
-
-    @keyframes fadeUp {
-      from {opacity: 0; transform: translateY(15px);}
-      to {opacity: 1; transform: translateY(0);}
+    #phoneForm button:hover {
+      background: #3c7ab5;
     }
   </style>
 </head>
 <body>
   <div class="card">
+    <!-- Make sure this PNG is in the root of your repo -->
     <img src="IMG_1089-removebg-preview.png" alt="SIRE Logo" class="logo">
-    <div class="tagline">Exclusive platform that turns<br>hustlers into industry leaders</div>
+
+    <div class="tagline">Exclusive platform that turns hustlers into industry leaders</div>
 
     <button class="waitlist-btn" onclick="showForm()">Join the Waitlist</button>
 
-    <form class="phone-form" id="phoneForm">
-      <input type="tel" class="phone-input" placeholder="Enter your phone number" required>
-      <button type="submit" class="request-btn">Request Access</button>
+    <form id="phoneForm">
+      <input type="tel" placeholder="Enter your phone number" required>
+      <br>
+      <button type="submit">Request Access</button>
     </form>
   </div>
 
   <script>
     function showForm() {
       document.querySelector('.waitlist-btn').style.display = 'none';
-      document.querySelector('.phone-form').style.display = 'block';
+      document.getElementById('phoneForm').style.display = 'block';
     }
 
     document.getElementById('phoneForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Phone submitted! (Hook this to FirstPromoter or your backend)');
+      alert('Phone submitted! (Hook this up to backend or FirstPromoter)');
     });
   </script>
 </body>
