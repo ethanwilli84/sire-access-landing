@@ -5,156 +5,125 @@
   <title>Sire Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Exclusive, invite-only access to Sire — the platform that turns hustlers into industry leaders.">
-  <!-- Prefer the platform phone keyboard/autofill on mobile -->
-  <meta name="format-detection" content="telephone=yes">
   <style>
-    :root{
-      --bg1:#5fa7e0; --bg2:#0b2947;
-      --card:#111; --text:#fff; --muted:#cfd6de;
-      --accent:#5fa7e0; --accent-hover:#3c7ab5;
-      --radius:20px;
-    }
-
-    /* SF / platform system stack */
-    html,body{
-      font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, Helvetica, Arial, "Apple Color Emoji",
-                   "Segoe UI Emoji", "Segoe UI Symbol";
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
     body {
-      margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(circle at 20% 10%, var(--bg1) 0%, var(--bg2) 100%);
-      color: var(--text);
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 20% 10%, #5fa7e0 0%, #0b2947 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #fff;
     }
 
     .card {
-      background: var(--card);
-      border-radius: var(--radius);
+      background: #111;
+      border-radius: 20px;
       padding: 40px;
       text-align: center;
       box-shadow: 0 8px 24px rgba(0,0,0,0.55);
-      max-width: 420px; width: 90%;
-      animation: fadeIn .6s ease-out;
+      max-width: 420px;
+      width: 90%;
     }
-    @keyframes fadeIn { from {opacity:.0; transform: translateY(6px)} to {opacity:1; transform:none} }
 
-    .logo { width: 160px; margin: 0 auto 14px auto; display:block; }
+    .logo {
+      width: 160px;
+      margin-bottom: 14px; /* bring tagline closer */
+    }
 
     .tagline {
-      font-size: 18px; line-height: 1.5; color: var(--muted);
-      margin: 0 0 24px;
-      animation: taglineUp 0.9s ease .05s both;
+      font-size: 18px;
+      margin: 0 0 26px 0; /* adjusted spacing */
+      line-height: 1.5;
+      animation: fadeIn 2s ease-in-out;
     }
-    @keyframes taglineUp { from{opacity:0; transform: translateY(10px)} to{opacity:1; transform:none} }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .waitlist-btn {
-      background: #fff; color: #000; border: none;
-      padding: 16px 20px; border-radius: 999px; font-size: 18px; font-weight: 700;
-      cursor: pointer; width: 100%;
-      transition: transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,.24);
-    }
-    .waitlist-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.28); }
-
-    /* Phone form (hidden until CTA click) */
-    #phoneForm { display:none; margin-top: 16px; animation: fadeIn .25s ease }
-    .phone-input{
-      width: 100%; padding: 12px 14px; font-size: 16px; color:#0c1116;
-      background: #f7f8fa; border: 2px solid #e6e8ee; border-radius: 10px;
-      outline: none;
-      -webkit-appearance: none; appearance: none;
-      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .phone-input::placeholder{ color:#98a2ad }
-    .phone-input:focus{
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(95,167,224,.20);
-      background:#fff;
+      background: #5fa7e0;
+      color: #fff;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width: 100%;
     }
 
-    .request-btn{
-      margin-top: 12px; width: 100%;
-      background: var(--accent); color:#fff; border:0; border-radius:10px;
-      padding: 12px 16px; font-size: 16px; font-weight: 700; cursor: pointer;
-      transition: background .2s ease, transform .05s ease;
+    .waitlist-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-    .request-btn:hover{ background: var(--accent-hover); }
-    .request-btn:active{ transform: translateY(1px); }
 
-    .hint{ margin-top: 8px; font-size: 12px; color:#9099a6 }
-    .success{ display:none; margin-top:10px; color:#bff0d9; font-size:13px }
-    .error{ display:none; margin-top:10px; color:#ffb8b8; font-size:13px }
+    /* Phone input form */
+    #phoneForm {
+      display: none;
+      margin-top: 16px;
+    }
+
+    #phoneForm input {
+      padding: 14px;
+      width: 100%; /* match button width */
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 12px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    #phoneForm button {
+      background: #5fa7e0;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    #phoneForm button:hover {
+      background: #3c7ab5;
+    }
+
+    .privacy-text {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
   <div class="card">
-    <!-- Make sure this PNG is in your repo root -->
     <img src="IMG_1089-removebg-preview.png" alt="SIRE Logo" class="logo">
 
-    <div class="tagline">Exclusive platform that turns hustlers into industry leaders</div>
+    <div class="tagline">Exclusive platform that turns hustlers <br>into industry leaders</div>
 
-    <button class="waitlist-btn" id="open">Join the Waitlist</button>
+    <button class="waitlist-btn" onclick="showForm()">Join the Waitlist</button>
 
-    <form id="phoneForm" novalidate>
-      <!-- Phone-friendly input: tel type, tel autocomplete, numeric keyboard -->
-      <input
-        id="phone"
-        class="phone-input"
-        type="tel"
-        inputmode="tel"
-        autocomplete="tel"
-        name="phone"
-        placeholder="+1 (555) 555-1234"
-        pattern="^[+]?[\d\s().-]{7,}$"
-        required
-      />
-      <button class="request-btn" type="submit">Request Access</button>
-
-      <div class="success" id="ok">Thanks — we’ll text you access details shortly.</div>
-      <div class="error" id="err">Please enter a valid phone number.</div>
-      <div class="hint">By continuing, you agree to our Terms and acknowledge our Privacy Policy.</div>
+    <form id="phoneForm">
+      <input type="tel" placeholder="+1 (555) 555-1234" pattern="^\+?[0-9\s\-\(\)]{7,}$" required autocomplete="tel">
+      <button type="submit">Request Access</button>
+      <div class="privacy-text">
+        By continuing, you agree to our Terms and acknowledge our Privacy Policy.
+      </div>
     </form>
   </div>
 
   <script>
-    const openBtn = document.getElementById('open');
-    const form = document.getElementById('phoneForm');
-    const phone = document.getElementById('phone');
-    const ok = document.getElementById('ok');
-    const err = document.getElementById('err');
-
-    // Reveal the phone form inline
-    openBtn.addEventListener('click', () => {
-      openBtn.style.display = 'none';
-      form.style.display = 'block';
-      phone.focus();
-    });
-
-    // Lightweight validation; plug into your backend/FirstPromoter later
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      ok.style.display = 'none';
-      err.style.display = 'none';
-
-      const value = phone.value.trim();
-      const valid = /^[+]?[\d\s().-]{7,}$/.test(value);
-      if (!valid) { err.style.display = 'block'; return; }
-
-      try {
-        // TODO: Send to your endpoint / FirstPromoter
-        // await fetch('/api/waitlist', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ phone:value }) });
-
-        ok.style.display = 'block';
-        phone.value = '';
-      } catch (e2) {
-        err.textContent = 'Could not submit. Try again.';
-        err.style.display = 'block';
-      }
-    });
+    function showForm() {
+      document.getElementById('phoneForm').style.display = 'block';
+    }
   </script>
 </body>
 </html>
+
 
